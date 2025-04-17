@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 20 70% 50%;
+    --chart-2: 30 70% 50%;
+    --chart-3: 40 70% 50%;
+    --chart-4: 50 70% 50%;
+    --chart-5: 60 70% 50%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 20 60% 50%;
+    --chart-2: 30 60% 50%;
+    --chart-3: 40 60% 50%;
+    --chart-4: 50 60% 50%;
+    --chart-5: 60 60% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Fix for mobile view stability */
+header {
+  width: 100%;
+  z-index: 50;
+  background-color: hsl(var(--background));
+  border-bottom: 1px solid hsl(var(--border));
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+main {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Select component fixes */
+[data-radix-select-viewport] {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+}
+
+/* Fix for select dropdown visibility */
+[data-radix-popper-content-wrapper] {
+  z-index: 9999 !important;
+}
+
+/* Ensure select content is visible */
+.SelectContent {
+  overflow: hidden;
+  background-color: hsl(var(--popover));
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+/* Prevent content jumping */
+.TabsContent {
+  min-height: 300px;
+  position: relative;
+  height: auto !important;
+}
+
+/* Tabs list fixes */
+[role="tablist"] {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: sticky;
+  top: 4rem;
+  z-index: 10;
+  background-color: hsl(var(--background));
+}
+
+[role="tablist"]::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fix for document preview */
+.document-preview {
+  height: 400px;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  background-color: hsl(var(--muted));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fix for document content */
+.document-content {
+  min-height: 300px;
+  height: auto !important;
+  overflow-y: auto;
+  word-break: break-word;
+}
+
+/* Fix for file uploader */
+.file-uploader {
+  min-height: 200px;
+  border: 2px dashed hsl(var(--border));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.file-uploader:hover {
+  border-color: hsl(var(--primary));
+}
+
+/* Fix for processing animation */
+.processing-animation {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Improve file name display */
+.file-name-container {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Animations */
+.animate-in {
+  animation-duration: 500ms;
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Transitions */
+a,
+button,
+input,
+select,
+textarea {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Mobile menu styles */
+.mobile-menu {
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  background-color: hsl(var(--background));
+  border-bottom: 1px solid hsl(var(--border));
+  z-index: 40;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+/* Assistant Styles */
+.assistant-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+}
+
+.assistant-button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.assistant-toggle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.transcript-bubble {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.5rem;
+  max-width: 20rem;
+  background-color: rgba(31, 41, 55, 0.95);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 50;
+}
+
+.assistant-chat {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.5rem;
+  z-index: 50;
+  width: 22rem;
+}
+
+.chat-messages {
+  overflow-y: auto;
+  max-height: 350px;
+  padding: 1rem;
+  scrollbar-width: thin;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+
+/* Prevent page scrolling when assistant is open */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Consistent styling for all device sizes */
+@media (max-width: 768px) {
+  .assistant-chat {
+    width: 90vw;
+    max-height: 70vh;
+  }
+
+  .transcript-bubble {
+    max-width: 90vw;
+  }
+
+  /* Fix for mobile menu */
+  .mobile-menu {
+    width: 100%;
+  }
+}
